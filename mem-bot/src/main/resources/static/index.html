@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+</head>
+<body>
+<div>
+
+    <input id="mem" value=":tony!Say"/> <button id="btn">click</button>
+
+
+    <div id="content"></div>
+
+
+</div>
+
+<script>
+
+        $("#btn").click(function() {
+            var value = $("#mem").val();
+
+             $.ajax({
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    text : value,
+                    display_name: "123",
+                    username: "123"}),
+                dataType: 'json',
+                success: function(data){
+                   $("#content").html(data.text);
+                },
+                error: function(){
+                    $("#content").html("<p>Error!</p>");
+                },
+                processData: false,
+                type: 'POST',
+                url: 'http://localhost:8080/event'
+            });
+
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
